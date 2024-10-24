@@ -1,40 +1,38 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class SelfNumbers {
 
     public static int digitSum (int n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10;
-            n/=10;
+        int sum = n;
+
+        String value = Integer.toString(n);
+        for (int i = 0; i < value.length(); i++) {
+            sum += Integer.parseInt(String.valueOf(value.charAt(i)));
         }
 
         return sum;
     }
 
     public static void main(String[] args) {
+
         List<Integer> nonSelfNumber = new ArrayList<>();
         int range = 5000;
 
         for (int i = 1; i < range; i++) {
-            int res = digitSum(i) + i;
+            int res = digitSum(i);
             if(res > range) {
                 break;
             }
             nonSelfNumber.add(res);
         }
 
-//        System.out.println(nonSelfNumber.get(0));
+        digitSum(123);
 
         List<Integer> listOfNumber = new ArrayList<>();
         for (int i = 1; i <= range; i++) {
             listOfNumber.add(i);
         }
-
-//        System.out.println(listOfNumber);
-
 
         List<Integer> selfNumbers = new ArrayList<>();
         for (int i = 0; i < listOfNumber.size(); i++) {
@@ -47,7 +45,6 @@ public class SelfNumbers {
             }
 
             if(flag == true) {
-//                System.out.println(listOfNumber.get(i));
                 selfNumbers.add(listOfNumber.get(i));
             }
         }
